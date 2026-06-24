@@ -1,0 +1,494 @@
+{
+    "modelo": "Ley de Enfriamiento de Newton",
+    "parametros": {
+        "T0": 95.0,
+        "Tm": 22.0,
+        "k": 0.04
+    },
+    "datos": [
+        {
+            "tiempo": 0,
+            "temperatura": 95.0
+        },
+        {
+            "tiempo": 1,
+            "temperatura": 92.138
+        },
+        {
+            "tiempo": 2,
+            "temperatura": 89.387
+        },
+        {
+            "tiempo": 3,
+            "temperatura": 86.745
+        },
+        {
+            "tiempo": 4,
+            "temperatura": 84.206
+        },
+        {
+            "tiempo": 5,
+            "temperatura": 81.767
+        },
+        {
+            "tiempo": 6,
+            "temperatura": 79.424
+        },
+        {
+            "tiempo": 7,
+            "temperatura": 77.172
+        },
+        {
+            "tiempo": 8,
+            "temperatura": 75.009
+        },
+        {
+            "tiempo": 9,
+            "temperatura": 72.93
+        },
+        {
+            "tiempo": 10,
+            "temperatura": 70.933
+        },
+        {
+            "tiempo": 11,
+            "temperatura": 69.015
+        },
+        {
+            "tiempo": 12,
+            "temperatura": 67.171
+        },
+        {
+            "tiempo": 13,
+            "temperatura": 65.4
+        },
+        {
+            "tiempo": 14,
+            "temperatura": 63.698
+        },
+        {
+            "tiempo": 15,
+            "temperatura": 62.063
+        },
+        {
+            "tiempo": 16,
+            "temperatura": 60.492
+        },
+        {
+            "tiempo": 17,
+            "temperatura": 58.983
+        },
+        {
+            "tiempo": 18,
+            "temperatura": 57.533
+        },
+        {
+            "tiempo": 19,
+            "temperatura": 56.14
+        },
+        {
+            "tiempo": 20,
+            "temperatura": 54.801
+        },
+        {
+            "tiempo": 21,
+            "temperatura": 53.515
+        },
+        {
+            "tiempo": 22,
+            "temperatura": 52.279
+        },
+        {
+            "tiempo": 23,
+            "temperatura": 51.092
+        },
+        {
+            "tiempo": 24,
+            "temperatura": 49.951
+        },
+        {
+            "tiempo": 25,
+            "temperatura": 48.855
+        },
+        {
+            "tiempo": 26,
+            "temperatura": 47.802
+        },
+        {
+            "tiempo": 27,
+            "temperatura": 46.79
+        },
+        {
+            "tiempo": 28,
+            "temperatura": 45.818
+        },
+        {
+            "tiempo": 29,
+            "temperatura": 44.884
+        },
+        {
+            "tiempo": 30,
+            "temperatura": 43.987
+        },
+        {
+            "tiempo": 31,
+            "temperatura": 43.125
+        },
+        {
+            "tiempo": 32,
+            "temperatura": 42.297
+        },
+        {
+            "tiempo": 33,
+            "temperatura": 41.501
+        },
+        {
+            "tiempo": 34,
+            "temperatura": 40.736
+        },
+        {
+            "tiempo": 35,
+            "temperatura": 40.002
+        },
+        {
+            "tiempo": 36,
+            "temperatura": 39.296
+        },
+        {
+            "tiempo": 37,
+            "temperatura": 38.618
+        },
+        {
+            "tiempo": 38,
+            "temperatura": 37.966
+        },
+        {
+            "tiempo": 39,
+            "temperatura": 37.34
+        },
+        {
+            "tiempo": 40,
+            "temperatura": 36.738
+        },
+        {
+            "tiempo": 41,
+            "temperatura": 36.161
+        },
+        {
+            "tiempo": 42,
+            "temperatura": 35.605
+        },
+        {
+            "tiempo": 43,
+            "temperatura": 35.072
+        },
+        {
+            "tiempo": 44,
+            "temperatura": 34.559
+        },
+        {
+            "tiempo": 45,
+            "temperatura": 34.067
+        },
+        {
+            "tiempo": 46,
+            "temperatura": 33.594
+        },
+        {
+            "tiempo": 47,
+            "temperatura": 33.139
+        },
+        {
+            "tiempo": 48,
+            "temperatura": 32.702
+        },
+        {
+            "tiempo": 49,
+            "temperatura": 32.283
+        },
+        {
+            "tiempo": 50,
+            "temperatura": 31.879
+        },
+        {
+            "tiempo": 51,
+            "temperatura": 31.492
+        },
+        {
+            "tiempo": 52,
+            "temperatura": 31.12
+        },
+        {
+            "tiempo": 53,
+            "temperatura": 30.762
+        },
+        {
+            "tiempo": 54,
+            "temperatura": 30.419
+        },
+        {
+            "tiempo": 55,
+            "temperatura": 30.089
+        },
+        {
+            "tiempo": 56,
+            "temperatura": 29.771
+        },
+        {
+            "tiempo": 57,
+            "temperatura": 29.467
+        },
+        {
+            "tiempo": 58,
+            "temperatura": 29.174
+        },
+        {
+            "tiempo": 59,
+            "temperatura": 28.893
+        },
+        {
+            "tiempo": 60,
+            "temperatura": 28.622
+        },
+        {
+            "tiempo": 61,
+            "temperatura": 28.363
+        },
+        {
+            "tiempo": 62,
+            "temperatura": 28.113
+        },
+        {
+            "tiempo": 63,
+            "temperatura": 27.874
+        },
+        {
+            "tiempo": 64,
+            "temperatura": 27.643
+        },
+        {
+            "tiempo": 65,
+            "temperatura": 27.422
+        },
+        {
+            "tiempo": 66,
+            "temperatura": 27.209
+        },
+        {
+            "tiempo": 67,
+            "temperatura": 27.005
+        },
+        {
+            "tiempo": 68,
+            "temperatura": 26.809
+        },
+        {
+            "tiempo": 69,
+            "temperatura": 26.62
+        },
+        {
+            "tiempo": 70,
+            "temperatura": 26.439
+        },
+        {
+            "tiempo": 71,
+            "temperatura": 26.265
+        },
+        {
+            "tiempo": 72,
+            "temperatura": 26.098
+        },
+        {
+            "tiempo": 73,
+            "temperatura": 25.937
+        },
+        {
+            "tiempo": 74,
+            "temperatura": 25.783
+        },
+        {
+            "tiempo": 75,
+            "temperatura": 25.634
+        },
+        {
+            "tiempo": 76,
+            "temperatura": 25.492
+        },
+        {
+            "tiempo": 77,
+            "temperatura": 25.355
+        },
+        {
+            "tiempo": 78,
+            "temperatura": 25.223
+        },
+        {
+            "tiempo": 79,
+            "temperatura": 25.097
+        },
+        {
+            "tiempo": 80,
+            "temperatura": 24.976
+        },
+        {
+            "tiempo": 81,
+            "temperatura": 24.859
+        },
+        {
+            "tiempo": 82,
+            "temperatura": 24.747
+        },
+        {
+            "tiempo": 83,
+            "temperatura": 24.639
+        },
+        {
+            "tiempo": 84,
+            "temperatura": 24.536
+        },
+        {
+            "tiempo": 85,
+            "temperatura": 24.436
+        },
+        {
+            "tiempo": 86,
+            "temperatura": 24.341
+        },
+        {
+            "tiempo": 87,
+            "temperatura": 24.249
+        },
+        {
+            "tiempo": 88,
+            "temperatura": 24.161
+        },
+        {
+            "tiempo": 89,
+            "temperatura": 24.076
+        },
+        {
+            "tiempo": 90,
+            "temperatura": 23.995
+        },
+        {
+            "tiempo": 91,
+            "temperatura": 23.916
+        },
+        {
+            "tiempo": 92,
+            "temperatura": 23.841
+        },
+        {
+            "tiempo": 93,
+            "temperatura": 23.769
+        },
+        {
+            "tiempo": 94,
+            "temperatura": 23.7
+        },
+        {
+            "tiempo": 95,
+            "temperatura": 23.633
+        },
+        {
+            "tiempo": 96,
+            "temperatura": 23.569
+        },
+        {
+            "tiempo": 97,
+            "temperatura": 23.508
+        },
+        {
+            "tiempo": 98,
+            "temperatura": 23.448
+        },
+        {
+            "tiempo": 99,
+            "temperatura": 23.392
+        },
+        {
+            "tiempo": 100,
+            "temperatura": 23.337
+        },
+        {
+            "tiempo": 101,
+            "temperatura": 23.285
+        },
+        {
+            "tiempo": 102,
+            "temperatura": 23.234
+        },
+        {
+            "tiempo": 103,
+            "temperatura": 23.186
+        },
+        {
+            "tiempo": 104,
+            "temperatura": 23.139
+        },
+        {
+            "tiempo": 105,
+            "temperatura": 23.095
+        },
+        {
+            "tiempo": 106,
+            "temperatura": 23.052
+        },
+        {
+            "tiempo": 107,
+            "temperatura": 23.011
+        },
+        {
+            "tiempo": 108,
+            "temperatura": 22.971
+        },
+        {
+            "tiempo": 109,
+            "temperatura": 22.933
+        },
+        {
+            "tiempo": 110,
+            "temperatura": 22.896
+        },
+        {
+            "tiempo": 111,
+            "temperatura": 22.861
+        },
+        {
+            "tiempo": 112,
+            "temperatura": 22.827
+        },
+        {
+            "tiempo": 113,
+            "temperatura": 22.795
+        },
+        {
+            "tiempo": 114,
+            "temperatura": 22.764
+        },
+        {
+            "tiempo": 115,
+            "temperatura": 22.734
+        },
+        {
+            "tiempo": 116,
+            "temperatura": 22.705
+        },
+        {
+            "tiempo": 117,
+            "temperatura": 22.677
+        },
+        {
+            "tiempo": 118,
+            "temperatura": 22.651
+        },
+        {
+            "tiempo": 119,
+            "temperatura": 22.625
+        },
+        {
+            "tiempo": 120,
+            "temperatura": 22.601
+        }
+    ]
+}

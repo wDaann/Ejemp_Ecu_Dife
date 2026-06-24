@@ -1,0 +1,451 @@
+{
+    "simulation_id": "WCRY-3A76DD",
+    "malware_profile": "WannaCry Ransomware",
+    "parameters": {
+        "total_nodes": 300000,
+        "initial_infected": 10,
+        "beta": 0.45,
+        "gamma": 0.1,
+        "duration_hours": 72
+    },
+    "telemetry": [
+        {
+            "hour": 0,
+            "susceptible": 299990,
+            "infected": 10,
+            "recovered": 0
+        },
+        {
+            "hour": 1,
+            "susceptible": 299985,
+            "infected": 13,
+            "recovered": 1
+        },
+        {
+            "hour": 2,
+            "susceptible": 299979,
+            "infected": 18,
+            "recovered": 2
+        },
+        {
+            "hour": 3,
+            "susceptible": 299971,
+            "infected": 24,
+            "recovered": 4
+        },
+        {
+            "hour": 4,
+            "susceptible": 299960,
+            "infected": 33,
+            "recovered": 6
+        },
+        {
+            "hour": 5,
+            "susceptible": 299945,
+            "infected": 44,
+            "recovered": 9
+        },
+        {
+            "hour": 6,
+            "susceptible": 299925,
+            "infected": 60,
+            "recovered": 14
+        },
+        {
+            "hour": 7,
+            "susceptible": 299897,
+            "infected": 81,
+            "recovered": 20
+        },
+        {
+            "hour": 8,
+            "susceptible": 299861,
+            "infected": 110,
+            "recovered": 28
+        },
+        {
+            "hour": 9,
+            "susceptible": 299811,
+            "infected": 148,
+            "recovered": 39
+        },
+        {
+            "hour": 10,
+            "susceptible": 299744,
+            "infected": 200,
+            "recovered": 54
+        },
+        {
+            "hour": 11,
+            "susceptible": 299654,
+            "infected": 271,
+            "recovered": 74
+        },
+        {
+            "hour": 12,
+            "susceptible": 299532,
+            "infected": 365,
+            "recovered": 101
+        },
+        {
+            "hour": 13,
+            "susceptible": 299367,
+            "infected": 493,
+            "recovered": 138
+        },
+        {
+            "hour": 14,
+            "susceptible": 299146,
+            "infected": 666,
+            "recovered": 187
+        },
+        {
+            "hour": 15,
+            "susceptible": 298847,
+            "infected": 898,
+            "recovered": 254
+        },
+        {
+            "hour": 16,
+            "susceptible": 298444,
+            "infected": 1211,
+            "recovered": 344
+        },
+        {
+            "hour": 17,
+            "susceptible": 297902,
+            "infected": 1632,
+            "recovered": 465
+        },
+        {
+            "hour": 18,
+            "susceptible": 297172,
+            "infected": 2198,
+            "recovered": 628
+        },
+        {
+            "hour": 19,
+            "susceptible": 296192,
+            "infected": 2958,
+            "recovered": 848
+        },
+        {
+            "hour": 20,
+            "susceptible": 294878,
+            "infected": 3977,
+            "recovered": 1144
+        },
+        {
+            "hour": 21,
+            "susceptible": 293119,
+            "infected": 5338,
+            "recovered": 1541
+        },
+        {
+            "hour": 22,
+            "susceptible": 290771,
+            "infected": 7152,
+            "recovered": 2075
+        },
+        {
+            "hour": 23,
+            "susceptible": 287652,
+            "infected": 9556,
+            "recovered": 2791
+        },
+        {
+            "hour": 24,
+            "susceptible": 283528,
+            "infected": 12724,
+            "recovered": 3746
+        },
+        {
+            "hour": 25,
+            "susceptible": 278117,
+            "infected": 16863,
+            "recovered": 5019
+        },
+        {
+            "hour": 26,
+            "susceptible": 271082,
+            "infected": 22212,
+            "recovered": 6705
+        },
+        {
+            "hour": 27,
+            "susceptible": 262050,
+            "infected": 29023,
+            "recovered": 8926
+        },
+        {
+            "hour": 28,
+            "susceptible": 250641,
+            "infected": 37528,
+            "recovered": 11829
+        },
+        {
+            "hour": 29,
+            "susceptible": 236532,
+            "infected": 47885,
+            "recovered": 15581
+        },
+        {
+            "hour": 30,
+            "susceptible": 219542,
+            "infected": 60086,
+            "recovered": 20370
+        },
+        {
+            "hour": 31,
+            "susceptible": 199755,
+            "infected": 73865,
+            "recovered": 26379
+        },
+        {
+            "hour": 32,
+            "susceptible": 177622,
+            "infected": 88611,
+            "recovered": 33765
+        },
+        {
+            "hour": 33,
+            "susceptible": 154013,
+            "infected": 103359,
+            "recovered": 42626
+        },
+        {
+            "hour": 34,
+            "susceptible": 130135,
+            "infected": 116901,
+            "recovered": 52962
+        },
+        {
+            "hour": 35,
+            "susceptible": 107315,
+            "infected": 128031,
+            "recovered": 64653
+        },
+        {
+            "hour": 36,
+            "susceptible": 86706,
+            "infected": 135837,
+            "recovered": 77456
+        },
+        {
+            "hour": 37,
+            "susceptible": 69039,
+            "infected": 139920,
+            "recovered": 91039
+        },
+        {
+            "hour": 38,
+            "susceptible": 54549,
+            "infected": 140418,
+            "recovered": 105031
+        },
+        {
+            "hour": 39,
+            "susceptible": 43059,
+            "infected": 137866,
+            "recovered": 119073
+        },
+        {
+            "hour": 40,
+            "susceptible": 34154,
+            "infected": 132984,
+            "recovered": 132860
+        },
+        {
+            "hour": 41,
+            "susceptible": 27341,
+            "infected": 126499,
+            "recovered": 146158
+        },
+        {
+            "hour": 42,
+            "susceptible": 22153,
+            "infected": 119037,
+            "recovered": 158808
+        },
+        {
+            "hour": 43,
+            "susceptible": 18198,
+            "infected": 111089,
+            "recovered": 170712
+        },
+        {
+            "hour": 44,
+            "susceptible": 15165,
+            "infected": 103012,
+            "recovered": 181821
+        },
+        {
+            "hour": 45,
+            "susceptible": 12822,
+            "infected": 95054,
+            "recovered": 192122
+        },
+        {
+            "hour": 46,
+            "susceptible": 10994,
+            "infected": 87377,
+            "recovered": 201628
+        },
+        {
+            "hour": 47,
+            "susceptible": 9553,
+            "infected": 80080,
+            "recovered": 210366
+        },
+        {
+            "hour": 48,
+            "susceptible": 8405,
+            "infected": 73220,
+            "recovered": 218374
+        },
+        {
+            "hour": 49,
+            "susceptible": 7482,
+            "infected": 66821,
+            "recovered": 225696
+        },
+        {
+            "hour": 50,
+            "susceptible": 6732,
+            "infected": 60889,
+            "recovered": 232378
+        },
+        {
+            "hour": 51,
+            "susceptible": 6117,
+            "infected": 55415,
+            "recovered": 238467
+        },
+        {
+            "hour": 52,
+            "susceptible": 5608,
+            "infected": 50382,
+            "recovered": 244008
+        },
+        {
+            "hour": 53,
+            "susceptible": 5185,
+            "infected": 45767,
+            "recovered": 249047
+        },
+        {
+            "hour": 54,
+            "susceptible": 4829,
+            "infected": 41547,
+            "recovered": 253623
+        },
+        {
+            "hour": 55,
+            "susceptible": 4528,
+            "infected": 37693,
+            "recovered": 257778
+        },
+        {
+            "hour": 56,
+            "susceptible": 4272,
+            "infected": 34180,
+            "recovered": 261547
+        },
+        {
+            "hour": 57,
+            "susceptible": 4053,
+            "infected": 30981,
+            "recovered": 264965
+        },
+        {
+            "hour": 58,
+            "susceptible": 3864,
+            "infected": 28071,
+            "recovered": 268063
+        },
+        {
+            "hour": 59,
+            "susceptible": 3702,
+            "infected": 25426,
+            "recovered": 270871
+        },
+        {
+            "hour": 60,
+            "susceptible": 3560,
+            "infected": 23025,
+            "recovered": 273413
+        },
+        {
+            "hour": 61,
+            "susceptible": 3437,
+            "infected": 20845,
+            "recovered": 275716
+        },
+        {
+            "hour": 62,
+            "susceptible": 3330,
+            "infected": 18868,
+            "recovered": 277800
+        },
+        {
+            "hour": 63,
+            "susceptible": 3236,
+            "infected": 17076,
+            "recovered": 279687
+        },
+        {
+            "hour": 64,
+            "susceptible": 3153,
+            "infected": 15451,
+            "recovered": 281395
+        },
+        {
+            "hour": 65,
+            "susceptible": 3080,
+            "infected": 13979,
+            "recovered": 282940
+        },
+        {
+            "hour": 66,
+            "susceptible": 3015,
+            "infected": 12646,
+            "recovered": 284338
+        },
+        {
+            "hour": 67,
+            "susceptible": 2958,
+            "infected": 11438,
+            "recovered": 285603
+        },
+        {
+            "hour": 68,
+            "susceptible": 2907,
+            "infected": 10345,
+            "recovered": 286746
+        },
+        {
+            "hour": 69,
+            "susceptible": 2862,
+            "infected": 9356,
+            "recovered": 287781
+        },
+        {
+            "hour": 70,
+            "susceptible": 2822,
+            "infected": 8460,
+            "recovered": 288717
+        },
+        {
+            "hour": 71,
+            "susceptible": 2786,
+            "infected": 7650,
+            "recovered": 289563
+        },
+        {
+            "hour": 72,
+            "susceptible": 2754,
+            "infected": 6917,
+            "recovered": 290328
+        }
+    ]
+}

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crecimiento Demográfico Espacial</title>
+    
+    <!-- CSS Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Leaflet.js para el componente geográfico -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        #map { height: 100%; min-height: 400px; z-index: 1; }
+        .story-alert { transition: all 0.4s ease; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 font-sans">
+
+    <div class="max-w-7xl mx-auto py-8 px-4">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+            
+            <!-- Navegación de Pestañas -->
+            <div class="flex border-b border-slate-200 bg-slate-50">
+                <button onclick="switchTab('simulacion')" id="tab-simulacion" class="flex-1 py-4 text-lg font-bold text-emerald-700 border-b-4 border-emerald-600 bg-white transition-all">
+                    🌍 Simulación y Mapa
+                </button>
+                <button onclick="switchTab('modelo')" id="tab-modelo" class="flex-1 py-4 text-lg font-bold text-slate-400 hover:text-emerald-600 transition-all">
+                    📚 Modelo y Solución
+                </button>
+            </div>
+
+            <!-- ================= PESTAÑA 1: SIMULACIÓN Y MAPA ================= -->
+            <div id="simulacion" class="p-6 block">
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                    
+                    <!-- Panel Izquierdo: Controles -->
+                    <div class="xl:col-span-3 bg-slate-50 p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-4">
+                        <h2 class="text-xl font-black text-slate-800">Parámetros</h2>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-1">Población Inicial (\(P_0\))</label>
+                            <input type="number" id="input-p0" value="100" class="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-emerald-500 font-mono">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-1">Tasa Crecimiento (\(r\))</label>
+                            <input type="number" step="0.01" id="input-r" value="0.08" class="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-emerald-500 font-mono">
+                            <p class="text-xs text-slate-400 mt-1">Natalidad - Mortalidad</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-1">Capacidad de Carga (\(K\))</label>
+                            <input type="number" id="input-k" value="5000" class="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-emerald-500 font-mono">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-600 mb-1">Años a Simular</label>
+                            <input type="number" id="input-years" value="100" class="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-emerald-500 font-mono">
+                        </div>
+                        
+                        <button id="btn-simular" onclick="iniciarSimulacion()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-transform active:scale-95 mt-2">
+                            ▶ Iniciar Simulación
+                        </button>
+
+                        <div id="csv-status" class="hidden mt-2 p-2 bg-emerald-100 text-emerald-800 text-xs rounded-lg border border-emerald-200 text-center font-mono break-words">
+                            CSV Guardado
+                        </div>
+                    </div>
+
+                    <!-- Panel Central: Gráfica y Narrativa -->
+                    <div class="xl:col-span-5 flex flex-col gap-4">
+                        <!-- Narrativa Storytelling -->
+                        <div id="story-box" class="story-alert w-full bg-slate-100 text-slate-600 border border-slate-300 p-4 rounded-xl font-bold text-center h-24 flex items-center justify-center text-lg shadow-inner">
+                            Ajusta los parámetros y presiona iniciar...
+                        </div>
+                        
+                        <!-- Chart.js -->
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex-1 relative min-h-[350px]">
+                            <canvas id="popChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Panel Derecho: Mapa SIG -->
+                    <div class="xl:col-span-4 rounded-xl border border-slate-200 overflow-hidden shadow-sm relative min-h-[400px]">
+                        <div id="map"></div>
+                        <!-- Overlay Informativo en el mapa -->
+                        <div class="absolute top-4 right-4 z-[1000] bg-white/90 px-3 py-2 rounded shadow font-mono text-sm font-bold border border-slate-200">
+                            Población actual: <span id="map-pop-counter" class="text-emerald-600">0</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ================= PESTAÑA 2: MODELO ================= -->
+            <div id="modelo" class="p-10 hidden">
+                <div class="max-w-4xl mx-auto prose prose-slate">
+                    <h2 class="text-3xl font-bold text-slate-800 border-b pb-4">Modelo de Crecimiento Logístico</h2>
+                    
+                    <p class="text-lg">
+                        El modelo logístico, propuesto por Pierre François Verhulst, mejora el modelo Malthusiano al introducir la limitación de recursos a través del parámetro \( K \) (Capacidad de carga).
+                    </p>
+
+                    <h3 class="text-xl font-bold text-emerald-700 mt-6">Ecuación Diferencial</h3>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 text-center my-4 text-2xl">
+                        $$ \frac{dP}{dt} = r P \left(1 - \frac{P}{K}\right) $$
+                    </div>
+                    
+                    <ul>
+                        <li><strong>\( P \):</strong> Población en el tiempo \( t \).</li>
+                        <li><strong>\( r \):</strong> Tasa intrínseca de crecimiento.</li>
+                        <li><strong>\( K \):</strong> Capacidad de carga máxima del entorno.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-bold text-emerald-700 mt-6">Solución Analítica</h3>
+                    <p>Resolviendo la EDO por variables separables o fracciones parciales, se obtiene la curva sigmoidea (en forma de S):</p>
+                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 text-center my-4 text-2xl">
+                        $$ P(t) = \frac{K}{1 + \left(\frac{K - P_0}{P_0}\right) e^{-rt}} $$
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- Gestión de Interfaz ---
+        function switchTab(tab) {
+            document.getElementById('simulacion').classList.add('hidden');
+            document.getElementById('modelo').classList.add('hidden');
+            
+            const baseClass = "flex-1 py-4 text-lg font-bold transition-all ";
+            document.getElementById('tab-simulacion').className = baseClass + "text-slate-400 hover:text-emerald-600";
+            document.getElementById('tab-modelo').className = baseClass + "text-slate-400 hover:text-emerald-600";
+            
+            document.getElementById(tab).classList.remove('hidden');
+            if(tab === 'simulacion') {
+                document.getElementById('tab-simulacion').className = baseClass + "text-emerald-700 border-b-4 border-emerald-600 bg-white";
+                if(map) map.invalidateSize(); // Refrescar renderizado del mapa
+            } else {
+                document.getElementById('tab-modelo').className = baseClass + "text-emerald-700 border-b-4 border-emerald-600 bg-white";
+            }
+        }
+
+        // --- Configuración Global e Instancias ---
+        let popChart, map;
+        let animationTimer;
+        let mapMarkers = []; // Array para guardar los marcadores demográficos
+        
+        // Coordenadas base (Centro del mapa)
+        const BASE_LAT = 19.4326; 
+        const BASE_LNG = -99.1332;
+
+        function initMap() {
+            // Inicializar Leaflet
+            map = L.map('map').setView([BASE_LAT, BASE_LNG], 11);
+            
+            // Tile Layer (Mapa base estilo oscuro/claro)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+            }).addTo(map);
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('popChart').getContext('2d');
+            popChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Población P(t)',
+                        data: [],
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderWidth: 3,
+                        pointRadius: 1,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Capacidad K',
+                        data: [],
+                        borderColor: '#ef4444',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Años' } },
+                        y: { title: { display: true, text: 'Habitantes' } }
+                    }
+                }
+            });
+        }
+
+        // --- Lógica del Storytelling Narrativo ---
+        function updateStorytelling(p, k, year) {
+            const ratio = p / k;
+            const storyBox = document.getElementById('story-box');
+            
+            if (ratio > 0.95) {
+                storyBox.className = "story-alert w-full bg-red-100 text-red-800 border border-red-300 p-4 rounded-xl font-bold text-center h-24 flex items-center justify-center text-lg shadow-md";
+                storyBox.innerHTML = `⚠️ Año ${year}: Recursos agotados. La población ha saturado la región.`;
+            } else if (ratio > 0.75) {
+                storyBox.className = "story-alert w-full bg-orange-100 text-orange-800 border border-orange-300 p-4 rounded-xl font-bold text-center h-24 flex items-center justify-center text-lg shadow-md";
+                storyBox.innerHTML = `🏠 Año ${year}: Alta densidad demográfica. Crecimiento ralentizándose.`;
+            } else if (ratio > 0.4) {
+                storyBox.className = "story-alert w-full bg-emerald-100 text-emerald-800 border border-emerald-300 p-4 rounded-xl font-bold text-center h-24 flex items-center justify-center text-lg shadow-md";
+                storyBox.innerHTML = `📈 Año ${year}: Expansión urbana acelerada. La región prospera rápidamente.`;
+            } else {
+                storyBox.className = "story-alert w-full bg-blue-100 text-blue-800 border border-blue-300 p-4 rounded-xl font-bold text-center h-24 flex items-center justify-center text-lg shadow-md";
+                storyBox.innerHTML = `🌱 Año ${year}: Primeros asentamientos. Abundancia de recursos.`;
+            }
+        }
+
+        // --- Sincronización del Mapa SIG ---
+        function updateMapPopulation(p, maxP) {
+            // Eliminar marcadores viejos para repoblar progresivamente
+            mapMarkers.forEach(m => map.removeLayer(m));
+            mapMarkers = [];
+
+            // Actualizar contador del UI
+            document.getElementById('map-pop-counter').innerText = p.toFixed(0);
+
+            // Representamos "población" agregando círculos de calor difusos
+            // Escalamos visualmente para no colapsar el DOM
+            const dotCount = Math.min(100, Math.floor((p / maxP) * 100) + 1);
+
+            for(let i=0; i < dotCount; i++) {
+                // Dispersión radial aleatoria alrededor del centro
+                const r = 0.15 * Math.sqrt(Math.random()); 
+                const theta = Math.random() * 2 * Math.PI;
+                const lat = BASE_LAT + r * Math.cos(theta);
+                const lng = BASE_LNG + r * Math.sin(theta);
+
+                const circle = L.circleMarker([lat, lng], {
+                    radius: 6 + Math.random() * 8,
+                    fillColor: p/maxP > 0.8 ? "#ef4444" : "#10b981",
+                    color: "transparent",
+                    fillOpacity: 0.4
+                }).addTo(map);
+                
+                mapMarkers.push(circle);
+            }
+        }
+
+        // --- Pipeline Principal Backend -> Frontend ---
+        async function iniciarSimulacion() {
+            const btn = document.getElementById('btn-simular');
+            btn.disabled = true;
+            btn.innerText = "Computando...";
+            clearInterval(animationTimer);
+            document.getElementById('csv-status').classList.add('hidden');
+
+            const payload = {
+                p0: parseFloat(document.getElementById('input-p0').value),
+                r: parseFloat(document.getElementById('input-r').value),
+                k: parseFloat(document.getElementById('input-k').value),
+                years: parseInt(document.getElementById('input-years').value)
+            };
+
+            // Ajuste estático de escala gráfica
+            popChart.options.scales.y.suggestedMax = payload.k * 1.1;
+
+            try {
+                const res = await fetch('/api/simulate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const responseData = await res.json();
+                
+                // Mostrar estatus de CSV
+                const csvUI = document.getElementById('csv-status');
+                csvUI.innerHTML = `💾 CSV en: <br><span class="opacity-75">${responseData.csv_saved_at}</span>`;
+                csvUI.classList.remove('hidden');
+
+                animarDatos(responseData.data, payload.k);
+
+            } catch (err) {
+                console.error(err);
+                alert("Error de conexión con el Backend Python.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "▶ Iniciar Simulación";
+            }
+        }
+
+        function animarDatos(dataList, K) {
+            popChart.data.labels = [];
+            popChart.data.datasets[0].data = [];
+            popChart.data.datasets[1].data = [];
+            popChart.update();
+
+            let index = 0;
+            // Animación: fluida según cantidad de años
+            const ms = Math.max(30, 4000 / dataList.length);
+
+            animationTimer = setInterval(() => {
+                if (index >= dataList.length) {
+                    clearInterval(animationTimer);
+                    return;
+                }
+
+                const d = dataList[index];
+                
+                // Alimentar la gráfica
+                popChart.data.labels.push(d.year);
+                popChart.data.datasets[0].data.push(d.population);
+                popChart.data.datasets[1].data.push(K); // Línea constante de capacidad
+                popChart.update();
+
+                // Lógica de narración
+                updateStorytelling(d.population, K, d.year);
+
+                // Lógica GIS Map
+                updateMapPopulation(d.population, K);
+
+                index++;
+            }, ms);
+        }
+
+        // --- Auto-Start UI ---
+        window.onload = () => {
+            initMap();
+            initChart();
+        };
+    </script>
+</body>
+</html>
